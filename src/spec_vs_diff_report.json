@@ -1,0 +1,46 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T03:19:52.275Z",
+  "summary": "REQ-4 appears implemented via added SEO/OG tags in frontend/index.html. Frontend booking UX improvements for loading/error/success and duplicate-submission prevention are partially evidenced, but some AC items cannot be confirmed due to truncation. REQ-1 (durable reservation persistence across canister upgrades) is not implemented in backend/main.mo as shown; state is not stable/preserved across upgrades.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Persist reservations and nextReservationId across canister upgrades so getReservation/getAllReservations still return prior data and IDs continue incrementing without reuse.",
+      "reason": "backend/main.mo shows in-memory (non-stable) Map state with no preupgrade/postupgrade (or stable variables) to persist reservations/nextReservationId across upgrades.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Audit and update all user-facing site copy to remove “draft”, “expired”, or “demo”, ensure all visible UI text is English across hero/menu/booking/gallery/contact/navbar/footer, and ensure reservation success/error messages are clear and not raw trap text.",
+      "reason": "Only BookingSection copy and ReservationForm toast text are visible in the diff; other sections/components are not shown as modified, and the diff summary is insufficient to verify the global copy audit/removal across the entire site.",
+      "evidence": [
+        "frontend/src/sections/BookingSection.tsx",
+        "frontend/src/components/booking/ReservationForm.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Disable the submit button and show a clear loading state while a reservation request is in-flight; prevent double submissions; show consistent success and readable error states allowing retry.",
+      "reason": "Duplicate-submission prevention and normalized errors are evidenced in useCreateReservation, and some inputs are disabled in ReservationForm, but the diff is truncated before showing the submit button implementation (disabled + loading indicator), so the specific AC about the submit button cannot be confirmed from provided evidence.",
+      "evidence": [
+        "frontend/src/hooks/useCreateReservation.ts",
+        "frontend/src/components/booking/ReservationForm.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/booking/ReservationForm.tsx",
+    "frontend/src/hooks/useCreateReservation.ts",
+    "frontend/src/sections/BookingSection.tsx",
+    "project_state.json"
+  ]
+}

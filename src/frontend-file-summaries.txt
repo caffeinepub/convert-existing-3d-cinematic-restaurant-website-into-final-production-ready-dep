@@ -1,0 +1,23 @@
+{
+  "frontend/src/App.tsx": "Main application component that renders the navbar, all page sections (Hero, Menu, Booking, Gallery, Contact), footer, and toast notifications.",
+  "frontend/src/sections/HeroSection.tsx": "Hero section with full-screen 3D canvas, cinematic background image, warm gradient overlays, and call-to-action buttons for booking and menu.",
+  "frontend/src/components/three/FoodHeroScene.tsx": "React Three Fiber 3D scene with rotating food-inspired geometric objects, warm amber/orange lighting, fog effects, and smooth animations.",
+  "frontend/src/components/three/useReducedMotion.ts": "Custom hook that detects user's reduced motion preference for accessibility and performance optimization.",
+  "frontend/src/sections/MenuSection.tsx": "Menu showcase section displaying a grid of animated menu cards with section header and description.",
+  "frontend/src/data/menu.ts": "Menu data structure and array of restaurant dishes with names, descriptions, prices, categories, and featured flags.",
+  "frontend/src/components/menu/MenuCard.tsx": "Interactive menu card component with hover animations, gradient overlays, and warm amber styling for dish presentation.",
+  "frontend/src/sections/BookingSection.tsx": "Table reservation section with updated production-ready copy and centered layout containing the reservation form.",
+  "frontend/src/components/booking/ReservationForm.tsx": "Complete reservation form with robust loading states, disabled inputs during submission, clear success/error messaging via toasts, and form reset on success.",
+  "frontend/src/hooks/useCreateReservation.ts": "Custom hook for creating reservations with in-flight request guard to prevent duplicate submissions and normalized user-friendly error messages.",
+  "frontend/src/sections/GallerySection.tsx": "Gallery section displaying a responsive grid of restaurant and food images with lightbox functionality.",
+  "frontend/src/data/gallery.ts": "Gallery data structure and array of image assets with captions and alt text for accessibility.",
+  "frontend/src/components/gallery/GalleryLightbox.tsx": "Modal lightbox component for viewing gallery images at full size with keyboard navigation and image counter.",
+  "frontend/src/sections/ContactSection.tsx": "Contact section with restaurant details (address, phone, hours) and embedded map in a two-column layout.",
+  "frontend/src/components/contact/MapEmbed.tsx": "OpenStreetMap iframe embed component with fallback message for blocked embeds and decorative border.",
+  "frontend/src/components/layout/Navbar.tsx": "Fixed navigation bar with smooth scrolling, responsive mobile menu using Sheet component, and scroll-based background transparency.",
+  "frontend/src/components/layout/Footer.tsx": "Footer component with restaurant info, quick links, social media icons, and caffeine.ai attribution.",
+  "frontend/src/lib/scrollToSection.ts": "Utility function for smooth scrolling to page sections with navbar offset calculation.",
+  "frontend/src/index.css": "Global styles with warm amber/gold OKLCH color palette, custom font families (Inter and Playfair Display), and base typography settings.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with warm shadow utilities, custom font families, and consistent design tokens.",
+  "frontend/index.html": "Production-ready HTML entry point with SEO metadata including title, meta description, and Open Graph tags for the fine dining restaurant website."
+}

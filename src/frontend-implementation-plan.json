@@ -1,0 +1,101 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Production-ready copy, booking UX hardening, and SEO metadata for the 3D restaurant site",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Audit and update all user-facing copy to be production-appropriate English with friendly reservation messaging.",
+      "acceptanceCriteria": [
+        "No visible UI text contains the words “draft”, “expired”, or “demo”.",
+        "All user-facing UI strings are in English across hero, menu, booking, gallery, contact, navbar, and footer sections.",
+        "Reservation success and error messages shown in the UI are clear, user-friendly English messages (no raw trap text shown directly)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the document <title> to production-appropriate restaurant branding language (remove template-like phrasing such as “3D Restaurant Website with …”)."
+        },
+        {
+          "path": "frontend/src/components/booking/ReservationForm.tsx",
+          "operation": "modify",
+          "description": "Refine reservation success and failure UI copy to be consistently production-ready English and ensure error messaging shown to users is sanitized (no raw backend/agent error text surfaced). Use the existing shadcn-ui Button/Card/Select/Input/Textarea and sonner toasts for consistent presentation; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/Navbar.tsx",
+          "operation": "modify",
+          "description": "Review and adjust any visible navbar labels/brand text as needed to ensure consistent production-ready English phrasing throughout navigation. Use the existing shadcn-ui Button/Sheet components as-is; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "modify",
+          "description": "Review and adjust footer headings, descriptions, and link labels to ensure all visible copy is production-ready English and consistent with the site’s branding tone."
+        },
+        {
+          "path": "frontend/src/sections/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Review and adjust hero headline/subheadline and button labels if needed to ensure production restaurant tone and consistent English copy (no template/draft language). Use the existing shadcn-ui Button component as-is; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/sections/BookingSection.tsx",
+          "operation": "modify",
+          "description": "Review and adjust booking section title/description to ensure production-ready English and alignment with updated reservation messaging."
+        },
+        {
+          "path": "frontend/src/sections/MenuSection.tsx",
+          "operation": "modify",
+          "description": "Review and adjust menu section title/description to ensure production-ready English and consistent tone."
+        },
+        {
+          "path": "frontend/src/sections/GallerySection.tsx",
+          "operation": "modify",
+          "description": "Review and adjust gallery section title/description to ensure production-ready English and consistent tone."
+        },
+        {
+          "path": "frontend/src/sections/ContactSection.tsx",
+          "operation": "modify",
+          "description": "Review and adjust contact section title/description and any visible labels to ensure production-ready English and consistent tone."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Harden the reservation flow UX with robust loading/success/error states and prevention of accidental double submissions.",
+      "acceptanceCriteria": [
+        "While a reservation request is in-flight, the submit button is disabled and shows a clear loading state.",
+        "On success, the UI shows a confirmation state/toast and the form behaves consistently (e.g., resets or clearly indicates completion).",
+        "On failure, the UI shows a readable error message and allows the user to retry without page refresh.",
+        "Rapid repeated clicks do not create duplicate reservations from the same UI action."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useCreateReservation.ts",
+          "operation": "modify",
+          "description": "Add a reliable in-flight guard to prevent overlapping reservation submissions (even with rapid repeated clicks) and normalize thrown errors into safe, user-presentable messages (avoid passing through raw agent/canister text)."
+        },
+        {
+          "path": "frontend/src/components/booking/ReservationForm.tsx",
+          "operation": "modify",
+          "description": "Ensure the form uses robust UI states: disable submit (and optionally inputs) during in-flight requests, show a clear loading label, display a clear success confirmation state/toast and consistent post-success behavior, and show a friendly retryable error message on failure. Use existing shadcn-ui form controls and sonner toasts for state messaging; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add production-grade document metadata (meta description and Open Graph tags) for SEO/sharing without changing functionality or routing.",
+      "acceptanceCriteria": [
+        "frontend/index.html includes a meaningful meta description in English.",
+        "frontend/index.html includes basic Open Graph tags (og:title, og:description, og:type) aligned with the site’s branding/copy.",
+        "The app still loads correctly and renders the existing sections (Hero, Menu, Booking, Gallery, Contact) with no routing changes required."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add/adjust production-ready metadata: set a concise restaurant-focused <title>, add an English meta description, and include Open Graph tags (og:title, og:description, og:type) aligned with the updated branding/copy while keeping the existing app bootstrapping unchanged."
+        }
+      ]
+    }
+  ]
+}

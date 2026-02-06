@@ -1,2 +1,3 @@
-# convert-existing-3d-cinematic-restaurant-website-into-final-production-ready-dep
-Exported from Caffeine project: Convert existing 3D cinematic restaurant website into final production-ready deployment
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

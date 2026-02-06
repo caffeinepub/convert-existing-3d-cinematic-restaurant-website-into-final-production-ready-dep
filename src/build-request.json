@@ -1,0 +1,106 @@
+{
+  "kind": "build_request",
+  "title": "Convert existing 3D cinematic restaurant website into final production-ready deployment",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Make reservation data durable for production by persisting reservations and the next reservation ID across canister upgrades (no data loss on upgrade).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "Pura final production department bana do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "If the backend canister is upgraded, previously created reservations are still returned by getReservation and getAllReservations.",
+        "nextReservationId continues incrementing after an upgrade (no ID reuse).",
+        "Uses a single Motoko actor in backend/main.mo; no additional backend services are introduced.",
+        "If a state schema change is required for existing deployments, add backend/migration.mo per the project migration policy to safely preserve existing reservation records."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Audit and update user-facing site copy to remove any references to “draft”, “expired”, or “demo”, and ensure all visible text is in English and appropriate for a production restaurant website.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "Pura final production department bana do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No visible UI text contains the words “draft”, “expired”, or “demo”.",
+        "All user-facing UI strings are in English across hero, menu, booking, gallery, contact, navbar, and footer sections.",
+        "Reservation success and error messages shown in the UI are clear, user-friendly English messages (no raw trap text shown directly)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Harden the booking/reservation flow for production UX by ensuring the UI provides reliable loading, success, and error states, and prevents accidental double-submissions.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "Pura final production department bana do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "While a reservation request is in-flight, the submit button is disabled and shows a clear loading state.",
+        "On success, the UI shows a confirmation state/toast and the form behaves consistently (e.g., resets or clearly indicates completion).",
+        "On failure, the UI shows a readable error message and allows the user to retry without page refresh.",
+        "Rapid repeated clicks do not create duplicate reservations from the same UI action."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add production-grade document metadata for the site (title, meta description, and Open Graph tags) to improve sharing/SEO without changing app functionality.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "Pura final production department bana do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/index.html includes a meaningful meta description in English.",
+        "frontend/index.html includes basic Open Graph tags (og:title, og:description, og:type) aligned with the site’s branding/copy.",
+        "The app still loads correctly and renders the existing sections (Hero, Menu, Booking, Gallery, Contact) with no routing changes required."
+      ]
+    }
+  ],
+  "constraints": [
+    "Keep all Motoko logic in the single actor at backend/main.mo (single-actor architecture).",
+    "Only add backend/migration.mo if needed to preserve existing state during upgrade (conditional migration policy).",
+    "Do not modify any frontend files under frontend/src/components/ui or the immutable hook/entry paths listed in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Adding email sending/confirmation emails.",
+    "Adding third-party authentication beyond Internet Identity.",
+    "Introducing external databases or non-IC backend services.",
+    "Adding real-time features (WebSockets/chat/notifications)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
